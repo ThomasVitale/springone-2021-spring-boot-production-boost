@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+
+  book-service:
+    image: book-service:0.0.1-SNAPSHOT
+    container_name: book-service
+    depends_on:
+      - postgresql
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/book_catalog
+
+  postgresql:
+    image: "postgres:13"
+    container_name: "postgresql"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=book_catalog
+  
